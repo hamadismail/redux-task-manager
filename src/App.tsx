@@ -1,15 +1,15 @@
-import { ModeToggle } from "./components/mode-toggle";
-import { Button } from "./components/ui/button";
+import TaskCard from "./components/modules/tasks/TaskCard";
+import { NavigationMenuDemo } from "./components/Navbar/Navbar";
 import { selectTasks } from "./redux/features/todos/todoSlice";
 import { useAppSelector } from "./redux/hooks";
 
 function App() {
   const tasks = useAppSelector(selectTasks);
-  console.log(tasks)
+  console.log(tasks);
   return (
     <>
-      <Button>Click me</Button>
-      <ModeToggle />
+      <NavigationMenuDemo />
+      {tasks.map(task => <TaskCard task={task}/>)}
     </>
   );
 }
