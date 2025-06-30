@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { deleteTask, toggleCompleteState } from "@/redux/features/todos/todoSlice";
+import {
+  deleteTask,
+  toggleCompleteState,
+} from "@/redux/features/todos/todoSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import type { ITask } from "@/redux/types";
 
@@ -22,10 +25,17 @@ const TaskCard = ({ task }: IProps) => {
               "bg-red-500": task.priority === "High",
             })}
           ></h2>
-          <h2 className={cn({"line-through": task.isCompleted})}>{task.title}</h2>
+          <h2 className={cn({ "line-through": task.isCompleted })}>
+            {task.title}
+          </h2>
         </div>
         <div className="flex gap-3 items-center">
-          <Button onClick={() => dispatch(deleteTask(task.id))} className="text-red-500">Del</Button>
+          <Button
+            onClick={() => dispatch(deleteTask(task.id))}
+            className="text-red-500"
+          >
+            Del
+          </Button>
           <Checkbox
             onClick={() => dispatch(toggleCompleteState(task.id))}
             className="text-green-500"
