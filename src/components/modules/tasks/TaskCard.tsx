@@ -5,7 +5,8 @@ import {
   deleteTask,
   toggleCompleteState,
 } from "@/redux/features/todos/todoSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { selectUsers } from "@/redux/features/users/userSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { ITask } from "@/redux/types";
 
 interface IProps {
@@ -14,6 +15,9 @@ interface IProps {
 
 const TaskCard = ({ task }: IProps) => {
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
+  const assignedUser = users.find((user) => user.id === task.assignedTo);
+
   return (
     <div className="mt-4 max-w-6xl mx-auto border p-4 rounded-md">
       <div className="flex justify-between">
@@ -42,7 +46,15 @@ const TaskCard = ({ task }: IProps) => {
           />
         </div>
       </div>
-      <div className="text-sm mt-2">{task.description}</div>
+      <div className="text-sm mt-2">
+        <p>
+          <span className="font-bold">Created By: </span>
+          {assignedUser ? assignedUser.name : "No one"}
+        </p>
+        <p>
+          <span className="font-bold">Description:</span> {task.description}
+        </p>
+      </div>
     </div>
   );
 };
