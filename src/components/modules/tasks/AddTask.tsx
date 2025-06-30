@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useCreateTasksMutation } from "@/redux/api/baseApi";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
@@ -42,8 +43,14 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 export function AddTask() {
   const [open, setOpen] = useState(false);
   const form = useForm();
+  const [createTask, { data, isLoading, isError }] = useCreateTasksMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const taskData = {
+      ...data,
+      isCompleted: false,
+    };
+    createTask(taskData);
     setOpen(false);
     form.reset();
   };
@@ -109,32 +116,6 @@ export function AddTask() {
                       <SelectItem value="High">High</SelectItem>
                       <SelectItem value="Medium">Medium</SelectItem>
                       <SelectItem value="Low">Low</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="assignedTo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="mt-2">Assigned To</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select User" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {/* {users.map((user) => (
-                        <SelectItem key={user.id} value={user.id}>
-                          {user.name}
-                        </SelectItem>
-                      ))} */}
                     </SelectContent>
                   </Select>
                 </FormItem>
