@@ -8,7 +8,16 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  tasks: [],
+  tasks: [
+    {
+      id: "jghjkldh",
+      title: "Redux",
+      description: "Learning Redux",
+      dueDate: "2025-07-03",
+      isCompleted: false,
+      priority: "High",
+    },
+  ],
   filter: "all",
 };
 
@@ -25,6 +34,16 @@ const todoSlice = createSlice({
       const taskData = createTask(action.payload);
       state.tasks.push(taskData);
     },
+    toggleCompleteState: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach((task) =>
+        task.id === action.payload
+          ? (task.isCompleted = !task.isCompleted)
+          : task
+      );
+    },
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
   },
 });
 
@@ -36,6 +55,6 @@ export const selectFilter = (state: RootState) => {
   return state.todos.filter;
 };
 
-export const { addTask } = todoSlice.actions;
+export const { addTask, deleteTask, toggleCompleteState } = todoSlice.actions;
 
 export default todoSlice.reducer;

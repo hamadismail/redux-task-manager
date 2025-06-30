@@ -46,7 +46,11 @@ export function AddTask() {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    dispatch(addTask(data as ITask))
+    const task = {
+    ...data,
+    dueDate: new Date(data.dueDate).toISOString(),
+  };
+    dispatch(addTask(task as ITask))
   };
   return (
     <Dialog>
