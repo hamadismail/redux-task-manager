@@ -5,10 +5,15 @@ import { useGetTasksQuery } from "./redux/api/baseApi";
 import type { ITask } from "./redux/types";
 
 function App() {
-  const { data, isLoading, isError } = useGetTasksQuery(undefined);
+  const { data, isLoading, isError } = useGetTasksQuery(undefined, {
+    pollingInterval: 30000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+    refetchOnReconnect: true,
+  });
 
-  if(isLoading) {
-    return <h2>Loading...</h2>
+  if (isLoading) {
+    return <h2>Loading...</h2>;
   }
 
   return (
@@ -46,9 +51,10 @@ function App() {
           </Tabs>
         </div>
       </div>
-      {!isLoading && data.tasks.map((task : ITask, idx: number) => (
-        <TaskCard task={task} key={idx} />
-      ))}
+      {!isLoading &&
+        data.tasks.map((task: ITask, idx: number) => (
+          <TaskCard task={task} key={idx} />
+        ))}
     </>
   );
 }
