@@ -1,5 +1,5 @@
 import App from "@/App";
-import User from "@/components/modules/users/User";
+import User from "@/User";
 import { NavigationMenuDemo } from "@/components/Navbar/Navbar";
 import { createBrowserRouter } from "react-router";
 

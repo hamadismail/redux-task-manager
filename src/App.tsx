@@ -1,6 +1,5 @@
 import { AddTask } from "./components/modules/tasks/AddTask";
 import TaskCard from "./components/modules/tasks/TaskCard";
-import { NavigationMenuDemo } from "./components/Navbar/Navbar";
 import { Tabs, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { filterTask, selectTasks } from "./redux/features/todos/todoSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
