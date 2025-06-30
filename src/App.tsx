@@ -10,7 +10,6 @@ function App() {
   const dispatch = useAppDispatch();
   return (
     <>
-      <NavigationMenuDemo />
       <div className="mt-6 max-w-6xl mx-auto flex justify-between">
         <AddTask />
         <div>
