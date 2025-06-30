@@ -1,16 +1,12 @@
-import { AddTask } from "./components/modules/tasks/AddTask.tsx";
-import TaskCard from "./components/modules/tasks/TaskCard";
+import { AddTask } from "./components/modules/tasks.old/AddTask";
+import TaskCard from "./components/modules/tasks.old/TaskCard";
 import { Tabs, TabsList, TabsTrigger } from "./components/ui/tabs";
-import { useGetTasksQuery } from "./redux/api/baseApi";
-import type { ITask } from "./redux/types";
+import { filterTask, selectTasks } from "./redux/features.old/todos/todoSlice";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 function App() {
-  const { data, isLoading, isError } = useGetTasksQuery(undefined);
-
-  if(isLoading) {
-    return <h2>Loading...</h2>
-  }
-
+  const tasks = useAppSelector(selectTasks);
+  const dispatch = useAppDispatch();
   return (
     <>
       <div className="mt-6 max-w-6xl mx-auto flex justify-between">
@@ -19,25 +15,25 @@ function App() {
           <Tabs defaultValue="all">
             <TabsList>
               <TabsTrigger
-                // onClick={() => dispatch(filterTask("all"))}
+                onClick={() => dispatch(filterTask("all"))}
                 value="all"
               >
                 All
               </TabsTrigger>
               <TabsTrigger
-                // onClick={() => dispatch(filterTask("high"))}
+                onClick={() => dispatch(filterTask("high"))}
                 value="high"
               >
                 High
               </TabsTrigger>
               <TabsTrigger
-                // onClick={() => dispatch(filterTask("medium"))}
+                onClick={() => dispatch(filterTask("medium"))}
                 value="medium"
               >
                 Medium
               </TabsTrigger>
               <TabsTrigger
-                // onClick={() => dispatch(filterTask("low"))}
+                onClick={() => dispatch(filterTask("low"))}
                 value="low"
               >
                 Low
@@ -46,8 +42,8 @@ function App() {
           </Tabs>
         </div>
       </div>
-      {!isLoading && data.tasks.map((task : ITask, idx: number) => (
-        <TaskCard task={task} key={idx} />
+      {tasks.map((task) => (
+        <TaskCard task={task} key={task.id} />
       ))}
     </>
   );
