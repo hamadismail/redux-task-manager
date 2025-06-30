@@ -6,7 +6,6 @@ import { useAppSelector } from "./redux/hooks";
 
 function App() {
   const tasks = useAppSelector(selectTasks);
-  console.log(tasks);
   return (
     <>
       <NavigationMenuDemo />

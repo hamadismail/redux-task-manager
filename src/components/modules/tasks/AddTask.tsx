@@ -34,14 +34,19 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { addTask } from "@/redux/features/todos/todoSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import type { ITask } from "@/redux/types";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 export function AddTask() {
   const form = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const dispatch = useAppDispatch();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    dispatch(addTask(data as ITask))
   };
   return (
     <Dialog>
