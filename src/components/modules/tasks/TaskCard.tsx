@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import {
   deleteTask,
   toggleCompleteState,
-} from "@/redux/features/todos/todoSlice";
-import { selectUsers } from "@/redux/features/users/userSlice";
+} from "@/redux/features.old/todos/todoSlice";
+import { selectUsers } from "@/redux/features.old/users/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { ITask } from "@/redux/types";
 

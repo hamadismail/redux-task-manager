@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addUser } from "@/redux/features/users/userSlice";
+import { addUser } from "@/redux/features.old/users/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import type { IUser } from "@/redux/types";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";

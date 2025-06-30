@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/redux/hooks";
-import { selectUsers } from "@/redux/features/users/userSlice";
+import { selectUsers } from "@/redux/features.old/users/userSlice";
 import UserCard from "./components/modules/users/UserCard";
 import { AddUser } from "./components/modules/users/AddUser";
 

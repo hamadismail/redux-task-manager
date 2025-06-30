@@ -34,8 +34,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { addTask } from "@/redux/features/todos/todoSlice";
-import { selectUsers } from "@/redux/features/users/userSlice";
+import { addTask } from "@/redux/features.old/todos/todoSlice";
+import { selectUsers } from "@/redux/features.old/users/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { ITask } from "@/redux/types";
 import { format } from "date-fns";
